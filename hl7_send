@@ -1,0 +1,22 @@
+#!/bin/bash
+
+while true; do
+    # Generate random values for the HL7 message
+    random_patient_id=$((RANDOM % 100000))
+    random_first_name="John$((RANDOM % 100))"
+    random_last_name="Doe$((RANDOM % 100))"
+    random_location="Room$((RANDOM % 100))"
+
+    # Create a random HL7 message
+    HL7_MESSAGE="MSH|^~\&|SENDING_APP|SENDING_FACILITY|RECEIVING_APP|RECEIVING_FACILITY|$(date +%Y%m%d%H%M%S)||ADT^A04|$random_patient_id|P|2.3||||\rEVN|A04|$(date +%Y%m%d%H%M%S)|||\rPID|1||$random_patient_id^^^YOUR_AUTHORITY^^MR||$random_last_name^$random_first_name^||19700101|M|||$random_location||||(555)555-5555|||M|||123456789|987654321|||\rPV1|1|O|||||^^^^^||||||||||||||||||||||||||||||||||||||||||||"
+
+    # Set the server host and port
+    SERVER_HOST="127.0.0.1"
+    SERVER_PORT=12345
+
+    # Send the HL7 message using netcat
+    echo -e "$HL7_MESSAGE" | nc $SERVER_HOST $SERVER_PORT
+
+    # Sleep for one second before sending the next message
+    sleep 1
+done
