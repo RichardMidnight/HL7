@@ -6,6 +6,6 @@ HL7 listener
 
 Paste or type this into a terminal window:
     
-    wget https://raw.githubusercontent.com/RichardMidnight/HL7/main/hl7.sh -O hl7.sh
-    bash hl7.sh
+    wget https://raw.githubusercontent.com/RichardMidnight/HL7/main/HL7.sh -O HL7.sh
+    bash HL7.sh
  
